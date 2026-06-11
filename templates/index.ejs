@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toyota - Innovation for Tomorrow</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    video {
+      border: 4px solid #d32f2f !important;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo"><img src="{{ url_for('static', filename='logo.png') }}" alt="Toyota Logo"></div>
+  <nav class="nav-menu">
+    <a href="/vehicles">EXPLORE VEHICLES</a>
+  </nav>
+<div class="nav-icons">
+    <div class="search-container">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search vehicles...">
+      <button class="search-btn" onclick="toggleSearch()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+
+<section class="hero">
+  <div class="slideshow-container">
+    <div class="slide fade" data-title="TOYOTA TAMARAW ABANTI, POSIBLE!" data-desc="">
+      <img src="{{ url_for('static', filename='pro1.jpg') }}" alt="Intro 1">
+    </div>
+    <div class="slide fade" data-title="ALL-NEW TOYOTA BZ4X" data-desc="A New Kind of Power">
+      <img src="{{ url_for('static', filename='pro2.jpg') }}" alt="Intro 2">
+    </div>
+    <div class="slide fade" data-title="ALL-NEW, ALL ELECTRIC TOYOTA URBAN CRUISER BEV" data-desc="Choose to Cruise">
+      <img src="{{ url_for('static', filename='pro3.jpg') }}" alt="Intro 3">
+    </div>
+    <div class="slide-indicators">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  </div>
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 id="slide-title">TOYOTA TAMARAW ABANTI, POSIBLE!</h1>
+        <p id="slide-desc"></p>
+        <button class="learn-more" onclick="location.href='/vehicles'">LEARN MORE</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vehicles" class="vehicles-showcase">
+  <h2 style="color:#d32f2f;">Top of the Line</h2>
+  <div class="lineup-slider-wrapper">
+    <button class="arrow-btn left" id="lineup-arrow-left">&#8592;</button>
+    <div class="lineup-viewport">
+      <div class="lineup-slider" id="lineup-slider">
+
+        <div class="vehicle-card">
+          <img src="{{ url_for('static', filename='ativh.webp') }}" alt="ATIV">
+          <h3>ATIV</h3>
+          <a href="{{ url_for('vehicle', model='ativ') }}" class="explore-link">EXPLORE</a>
+        </div>
+
+        <div class="vehicle-card">
+          <img src="{{ url_for('static', filename='camryh.webp') }}" alt="CAMRY">
+          <h3>CAMRY</h3>
+          <a href="{{ url_for('vehicle', model='camry') }}" class="explore-link">EXPLORE</a>
+        </div>
+
+        <div class="vehicle-card">
+          <img src="{{ url_for('static', filename='corollah.webp') }}" alt="COROLLA ALTIS">
+          <h3>COROLLA ALTIS</h3>
+          <a href="{{ url_for('vehicle', model='corolla_altis') }}" class="explore-link">EXPLORE</a>
+        </div>
+
+        <div class="vehicle-card">
+          <img src="{{ url_for('static', filename='viosh.webp') }}" alt="VIOS">
+          <h3>VIOS</h3>
+          <a href="{{ url_for('vehicle', model='vios') }}" class="explore-link">EXPLORE</a>
+        </div>
+
+      </div>
+    </div>
+    <button class="arrow-btn right" id="lineup-arrow-right">&#8594;</button>
+    <div class="lineup-pagination" id="lineup-pagination"></div>
+  </div>
+</section>
+
+
+<!-- PROMOTIONS SECTION -->
+<section class="promotions-section" style="background:#fff; padding:60px 0 40px 0; text-align:center;">
+  <h2 style="font-size:2.3rem; color:#d32f2f; margin-bottom:18px;">Meet Our Proud Toyota Family</h2>
+ 
+  <!-- Promotion Pictures -->
+  <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:24px; max-width:1200px; margin:40px auto 0 auto;">
+    <div style="flex:1 1 300px; max-width:380px; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px #0001;">
+      <img src="{{ url_for('static', filename='tes1.jpg') }}" alt="Promotion 1" style="width:100%; height:auto; display:block;">
+    </div>
+    <div style="flex:1 1 300px; max-width:380px; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px #0001;">
+      <img src="{{ url_for('static', filename='tes3.jpg') }}" alt="Promotion 2" style="width:100%; height:auto; display:block;">
+    </div>
+    <div style="flex:1 1 300px; max-width:380px; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px #0001;">
+      <img src="{{ url_for('static', filename='tes4.jpg') }}" alt="Promotion 3" style="width:100%; height:auto; display:block;">
+    </div>
+    <div style="flex:1 1 300px; max-width:380px; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px #0001;">
+      <img src="{{ url_for('static', filename='tes5.jpg') }}" alt="Promotion 3" style="width:100%; height:auto; display:block;">
+    </div>
+    <div style="flex:1 1 300px; max-width:380px; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px #0001;">
+      <img src="{{ url_for('static', filename='tes6.jpg') }}" alt="Promotion 3" style="width:100%; height:auto; display:block;">
+    </div>
+    <div style="flex:1 1 300px; max-width:380px; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px #0001;">
+      <img src="{{ url_for('static', filename='tes7.jpg') }}" alt="Promotion 3" style="width:100%; height:auto; display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY FORM SECTION -->
+
+<!-- REQUEST A QUOTE SECTION -->
+<section class="quote-section" id="request-quote" style="background:#f7f7f7; padding:70px 0 60px 0; text-align:center;">
+  <img src="{{ url_for('static', filename='agent.jpg') }}" alt="Agent" style="width:150px; height:150px; border-radius:50%; border:4px solid #d32f2f; object-fit:cover; margin-bottom:20px;">
+  <h2 style="font-size:2.3rem; color:#d32f2f; margin-bottom:10px;">Hi! I'm Marcel Joseph Chan Claridad</h2>
+  <p style="font-size:1.1rem; color:#333; margin-bottom:30px;">A Marketing Professional passionate about creating innovative strategies, building strong brands, and driving business growth. </p>
+  <form method="POST" action="/request-quote" style="max-width:540px; margin:0 auto; text-align:left; background:#fff; border-radius:12px; box-shadow:0 2px 16px #0001; padding:32px 28px;">
+    <div style="margin-bottom:18px;">
+      <label for="qname" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Full Name *</label>
+      <input type="text" id="qname" name="qname" required style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qemail" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Email Address *</label>
+      <input type="email" id="qemail" name="qemail" required style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qphone" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Phone Number *</label>
+      <input type="tel" id="qphone" name="qphone" required style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+<div style="margin-bottom:18px;">
+      <label for="qvehicle" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Vehicle of Interest</label>
+<select id="qvehicle" name="qvehicle" style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; background:#fff;">
+        <option value="">Select a vehicle</option>
+        <option value="Wigo">Wigo</option>
+        <option value="Vios">Vios</option>
+        <option value="ATIV">ATIV</option>
+        <option value="Corolla Altis">Corolla Altis</option>
+        <option value="Camry">Camry</option>
+        <option value="Raize">Raize</option>
+        <option value="Veloz">Veloz</option>
+        <option value="Rush">Rush</option>
+        <option value="Corolla Cross">Corolla Cross</option>
+        <option value="Yaris Cross">Yaris Cross</option>
+        <option value="RAV4">RAV4</option>
+        <option value="Fortuner">Fortuner</option>
+        <option value="Land Cruiser Prado">Land Cruiser Prado</option>
+        <option value="bZ4X">bZ4X</option>
+        <option value="Avanza">Avanza</option>
+        <option value="Innova">Innova</option>
+        <option value="Zenix">Zenix</option>
+        <option value="Alphard">Alphard</option>
+        <option value="Hiace">Hiace</option>
+        <option value="Coaster">Coaster</option>
+        <option value="Hilux">Hilux</option>
+        <option value="Hilux Fleet">Hilux Fleet</option>
+        <option value="Tamaraw">Tamaraw</option>
+        <option value="Lite Ace">Lite Ace</option>
+      </select>
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qbirthdate" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Birthdate</label>
+      <input type="date" id="qbirthdate" name="qbirthdate" style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qaddress" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Complete Address</label>
+      <textarea id="qaddress" name="qaddress" rows="2" placeholder="Enter your complete address..." style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; resize:vertical;"></textarea>
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qincome" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Source of Income</label>
+      <select id="qincome" name="qincome" style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; background:#fff;">
+        <option value="">Select source of income</option>
+        <option value="Employed">Employed</option>
+        <option value="Self-Employed">Self-Employed</option>
+        <option value="Business Owner">Business Owner</option>
+        <option value="OFW">OFW (Overseas Filipino Worker)</option>
+        <option value="Pensioner">Pensioner</option>
+        <option value="Investor">Investor</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div style="margin-bottom:22px;">
+      <label for="qmessage" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Message</label>
+      <textarea id="qmessage" name="qmessage" rows="4" placeholder="Let us know your requirements..." style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; resize:vertical; min-height:80px;"></textarea>
+    </div>
+    <button type="submit" style="background:#d32f2f; color:#fff; padding:15px 44px; border:none; border-radius:6px; font-size:16px; font-weight:700; letter-spacing:1px; cursor:pointer; transition:background 0.3s; display:block; margin:0 auto;">REQUEST QUOTE</button>
+  </form>
+</section>
+
+<!-- LOCATION SECTION (moved below quote) -->
+<section class="location-section" style="background:#f7f7f7; padding:40px 0; text-align:center;">
+  <h2 style="font-size:2.5rem; color:#d32f2f; margin-bottom:10px;">Visit Us at Toyota Tacloban, Leyte</h2>
+  <p style="font-size:1.2rem; color:#333; margin-bottom:18px;">Barangay 71 Naganaga, 6500 Tacloban City &bull; <b>Open</b> - Closes 5pm<br>Marcel's number <a href="tel:0533252222">09661350439</a></p>
+  <div style="max-width:700px; margin:0 auto 24px;">
+    <iframe src="https://www.google.com/maps?q=Barangay+71+Naganaga+Tacloban+City&output=embed" width="100%" height="340" style="border:0; border-radius:12px; box-shadow:0 4px 24px #0002;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="custom-footer" style="width:100vw; min-height:220px; background:url('{{ url_for('static', filename='footer-background.webp') }}') center center/cover no-repeat; display:flex; align-items:center; justify-content:center; position:relative; margin-top:0; overflow:hidden; padding-bottom:20px;">
+<div class="footer-overlay" style="width:100vw; min-height:220px; background:rgba(0,0,0,0.1); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 20px 40px 20px; position:relative; overflow:hidden;">
+    <img src="{{ url_for('static', filename='footer-logo.webp') }}" alt="Toyota Logo" class="footer-logo" style="width:90px; max-width:120px; max-height:90px; height:auto; margin-bottom:8px; filter:drop-shadow(0 2px 8px #2228); display:block; margin-left:auto; margin-right:auto; object-fit:contain;">
+<div class="footer-cursive" style="font-family:'Brush Script MT',cursive,sans-serif; font-size:2.1rem; color:#fff; text-shadow:0 2px 8px #2228; letter-spacing:2px; margin-top:0; margin-bottom:0; font-weight:400; text-align:center; width:100vw; display:block; z-index:2;">move your world</div>
+    <div style="color:#fff; font-size:12px; margin-top:15px; text-align:center; opacity:0.85;">©no copyright infringement intended.</div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

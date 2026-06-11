@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Corolla Altis | Tacloban</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+/* HERO */
+.hero {
+  height: 80vh;
+  background: url("{{ url_for('static', filename='corollaa.webp') }}") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 60px;
+}
+
+.hero p {
+  font-size: 26px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+/* TABS */
+.tabs {
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.tabs-left {
+  display: flex;
+  gap: 30px;
+  padding: 15px 24px;
+}
+
+.tabs span {
+  cursor: pointer;
+}
+
+.inquire-btn {
+  background: #0d0f12;
+  color: #fff;
+  border: none;
+  padding: 16px 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.inquire-btn:hover {
+  background: #1a1d22;
+}
+
+/* SECTION */
+.section {
+  padding: 60px;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* COLOR SELECTOR */
+.colors {
+  margin-top: 20px;
+}
+
+.color {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin: 8px;
+  cursor: pointer;
+}
+
+#carImage {
+  width: 580px;
+  max-width: 92%;
+  height: 320px;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+#colorLabel {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* VARIANTS */
+.variants {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+
+.variant {
+  background: white;
+  padding: 20px;
+  width: 280px;
+  border-radius: 12px;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.variant:hover {
+  transform: translateX(-16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.variant:nth-child(even):hover {
+  transform: translateX(16px);
+}
+
+.variant img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* FEATURES */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 10px 0 40px 0;
+  width: 100%;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 300px;
+  padding: 0;
+}
+
+.feature-content {
+  flex: 1;
+  text-align: center;
+  padding: 0 2.5vw;
+}
+
+.feature-content h2 {
+  font-size: 34px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.feature-content p {
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.feature img {
+  width: 620px;
+  max-width: 50vw;
+  min-width: 320px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+  background: none;
+  margin-left: 0;
+  transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s cubic-bezier(.4,2,.6,1);
+}
+
+.feature.alt {
+  flex-direction: row-reverse;
+}
+
+/* Animation for feature slide-in */
+.feature {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s cubic-bezier(.4,2,.6,1);
+}
+.feature.slide-in-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+.feature.slide-in-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* INSIDE IMAGE SECTION */
+.inside-section {
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  overflow: hidden;
+}
+.inside-image {
+  width: 100vw;
+  max-width: 100%;
+  display: block;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.inside-image.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* GALLERY */
+.gallery {
+  padding: 40px;
+  background: #111;
+  color: white;
+}
+
+.gallery-wrap {
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 80px;
+}
+.gallery-track {
+  display: flex;
+  transition: transform 300ms ease;
+}
+.gallery-slide {
+  min-width: 420px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.gallery-slide img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+.gallery-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.95);
+  border: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 3;
+}
+
+.gallery-button.left { left: 16px; }
+.gallery-button.right { right: 16px; }
+
+/* FULL SPECS MODAL */
+.full-specs-link {
+  margin-top: 14px;
+  color: #d80000;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-align: left;
+  display: inline-block;
+}
+.full-specs-link:hover { text-decoration: underline; }
+
+.specs-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 20px;
+}
+.specs-modal-overlay.show { display: flex; }
+
+.specs-modal {
+  width: min(900px, 95vw);
+  max-height: 90vh;
+  background: #fff;
+  color: #111;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+}
+.specs-modal-header {
+  padding: 20px 24px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.specs-modal-header h2 {
+  font-size: 42px;
+  margin: 0;
+  line-height: 1.1;
+}
+.specs-close {
+  border: none;
+  background: transparent;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  color: #111;
+}
+.specs-modal-content {
+  padding: 0 24px 18px;
+  overflow: auto;
+}
+.specs-section {
+  margin-top: 16px;
+}
+.specs-section h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  border-bottom: 2px solid #d9d9d9;
+  padding-bottom: 6px;
+}
+.specs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.specs-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.specs-list li span:first-child {
+  font-weight: 600;
+}
+.specs-close-text {
+  margin-top: 20px;
+  color: #d80000;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: inline-block;
+}
+.specs-highlight {
+  margin-top: 16px;
+}
+.specs-highlight h4 {
+  margin-bottom: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <p>Lead the Change</p>
+    <h1 id="wigoH">Corolla Altis</h1>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tabs-left">
+    <span onclick="scrollToSection('overview')">Overview</span>
+    <span onclick="scrollToSection('variants')">Variants</span>
+    <span onclick="scrollToSection('highlights')">Highlights</span>
+    <span onclick="scrollToSection('gallery-section')">Gallery</span>
+  </div>
+  <button class="inquire-btn" onclick="scrollToSection('inquire-form')">INQUIRE NOW</button>
+</div>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div style="background:#4CAF50; color:#fff; padding:15px 20px; text-align:center; font-size:16px; font-weight:600;">
+      {% for category, message in messages %}
+        {{ message }}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!-- INTRO -->
+<div class="section" id="overview">
+  <h2>Lead the Charge</h2>
+
+  <img id="carImage" src="{{ url_for('static', filename='corollaab.webp') }}" width="300">
+
+  <p id="colorLabel">Attitude Black Mica</p>
+
+  <div class="colors">
+    <div class="color" style="background: black; border: 2px solid #ccc;" onclick="changeColor('black')" title="Attitude Black Mica"></div>
+    <div class="color" style="background: white; border: 2px solid #ccc;" onclick="changeColor('white')" title="White Pearl"></div>
+    
+  </div>
+</div>
+
+<!-- VARIANTS -->
+<div class="section" id="variants">
+  <h2>Choose your Corolla Altis variant</h2>
+
+  <div class="variants">
+    <div class="variant">
+      <img src="{{ url_for('static', filename='corollaaw.webp') }}" alt="Wigo G CVT" id="openSpecsGCVTImage">
+      <h3>1.8 GR-S HEV CVT</h3>
+      <p><strong>PHP 1,771,000 MSRP</strong></p>
+      <p><em>PHP 32,193 / mo</em></p>
+      <ul style="text-align:left; margin: 0 auto 10px; max-width: 320px;">
+        <li>Engine: 2ZR-FXE: In-Line 4, 16-Valve DOHC, Chain Drive with Dual VVT-I, Hybrid</li>
+        <li>Drivetrain: Front Wheel Drive (FWD) with Electronic Power Steering</li>
+        <li>Function: Push Start with 12.3" Digital MID</li>
+        <li>Audio: 9" Display Audio with Apple Carplay & Android Auto</li>
+        <li>Drive Modes: Eco / Normal / Sport / EV</li>
+      </ul>
+      <div class="full-specs-link" id="openSpecsGCVT">FULL SPECS</div>
+    </div>
+
+    <div class="variant">
+      <img src="{{ url_for('static', filename='corollaaw.webp') }}" alt="Wigo E CVT" id="openSpecsECVTImage">
+      <h3>1.8 G HEV CVT</h3>
+      <p><strong>PHP 1,617,000 MSRP</strong></p>
+      <p><em>PHP 29,393 / mo</em></p>
+      <ul style="text-align:left; margin: 0 auto 10px; max-width: 320px;">
+        <li>Engine: 2ZR-FXE: In-Line 4, 16-Valve DOHC, Chain Drive with Dual VVT-I, Hybrid</li>
+        <li>Drivetrain: Front Wheel Drive (FWD)</li>
+        <li>Function: Push Start with 7” Digital MID</li>
+        <li>Audio: 9” Display Audio with Wireless Apple Carplay & Android Auto</li>
+      </ul>
+      <div class="full-specs-link" id="openSpecsECVT">FULL SPECS</div>
+    </div>
+
+<div class="variant">
+      <img src="{{ url_for('static', filename='corollaaw.webp') }}" alt="Corolla E HEV" id="openSpecsJMTImage">
+<h3>1.8 E HEV CVT</h3>
+      <p><strong>PHP 1,504,000 MSRP</strong></p>
+      <p><em>PHP 27,339 / mo </em></p>
+      <ul style="text-align:left; margin: 0 auto 10px; max-width: 320px;">
+        <li>Engine: 2ZR-FXE: In-Line 4, 16-Valve DOHC, Chain Drive with Dual VVT-I, Hybrid</li>
+        <li>Drivetrain: Front Wheel Drive (FWD)</li>
+        <li>Function: Push Start with 7” Digital MID</li>
+        <li>Audio: 9” Display Audio with Wireless Apple Carplay & Android Auto</li>
+      </ul>
+<div class="full-specs-link" id="openSpecsJMT">FULL SPECS</div>
+    </div>
+
+
+    <div class="variant">
+      <img src="{{ url_for('static', filename='corollaab.webp') }}" alt="Wigo J M/T" id="openSpecsJMTImage2">
+      <h3>1.8 E CVT</h3>
+      <p><strong>PHP 1,213,000 MSRP</strong></p>
+      <p><em>PHP 22,050 / mo</em></p>
+      <ul style="text-align:left; margin: 0 auto 10px; max-width: 320px;">
+        <li>Engine: 2ZR-FE: In-Line 4, 16 Valve DOHC, Chain Drive with Dual VVT-I</li>
+        <li>Suspension: Macpherson Strut (Front), Torsion Beam (Rear)</li>
+        <li>Drivetrain: Front Wheel Drive (FWD) with Electronic Power Steering</li>
+        <li>Function: Rotary with 7" Digital MID</li>
+        <li>Audio: 8" Display Audio with Apple Carplay & Android Auto</li>
+      </ul>
+      <div class="full-specs-link" id="openSpecsJMT2">FULL SPECS</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features" id="highlights">
+
+  <div class="feature">
+    <div class="feature-content">
+      <h2>Gazoo Racing at Its Core</h2>
+      <p>When you see the GAZOO RACING Sport badge, you know that it has been tested and pushed to the limits of performance to deliver the ultimate driving experience.</p>
+    </div>
+    <img src="{{ url_for('static', filename='corollaah1.webp') }}" alt="Cool New Look">
+  </div>
+
+  <div class="feature alt">
+    <div class="feature-content">
+      <h2>Thrilling Gr Design</h2>
+      <p>With its design upgrade, the Corolla Altis GR-S HEV screams GAZOO Racing more than ever. It is a sight to behold from every angle.</p>
+    </div>
+    <img src="{{ url_for('static', filename='corollaah2.webp') }}" alt="Spacious Comfort">
+  </div>
+
+  <div class="feature">
+    <div class="feature-content">
+      <h2>360° Of Safety</h2>
+      <p>An unobstructed 360° view and a suite of safety features give you peace of mind in your daily drives.</p>
+    </div>
+    <img src="{{ url_for('static', filename='corollaah3.webp') }}" alt="Smarter Features">
+  </div>
+
+
+
+
+<!-- INSIDE IMAGE -->
+<div class="inside-section">
+  <img src="{{ url_for('static', filename='corollaah4.webp') }}" alt="Wigo Interior" class="inside-image" id="insideImage">
+</div>
+
+<!-- GALLERY -->
+  <div class="gallery" id="gallery-section">
+  <h2>Gallery</h2>
+
+  <div class="gallery-wrap">
+    <button class="gallery-button left" id="gallery-left">‹</button>
+    <div class="gallery-track" id="gallery-track">
+      <div class="gallery-slide" data-clone="last"><img src="{{ url_for('static', filename='corollaag8.webp') }}" alt="G5"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag1.webp') }}" alt="G1"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag2.webp') }}" alt="G2"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag3.webp') }}" alt="G3"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag4.webp') }}" alt="G4"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag5.webp') }}" alt="G5"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag6.webp') }}" alt="G5"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag7.webp') }}" alt="G5"></div>
+      <div class="gallery-slide"><img src="{{ url_for('static', filename='corollaag8.webp') }}" alt="G5"></div>
+      <div class="gallery-slide" data-clone="first"><img src="{{ url_for('static', filename='corollaag1.webp') }}" alt="G1"></div>
+    </div>
+    <button class="gallery-button right" id="gallery-right">›</button>
+  </div>
+
+</div>
+
+<!-- INQUIRY FORM SECTION -->
+
+<!-- REQUEST A QUOTE SECTION -->
+<section class="quote-section" id="request-quote" style="background:#f7f7f7; padding:70px 0 60px 0; text-align:center;">
+  <img src="{{ url_for('static', filename='agent.jpg') }}" alt="Agent" style="width:150px; height:150px; border-radius:50%; border:4px solid #d32f2f; object-fit:cover; margin-bottom:20px;">
+  <h2 style="font-size:2.3rem; color:#d32f2f; margin-bottom:10px;">Hi! I'm Marcel Joseph Chan Claridad</h2>
+  <p style="font-size:1.1rem; color:#333; margin-bottom:30px;">A Marketing Professional passionate about creating innovative strategies, building strong brands, and driving business growth. </p>
+  <form method="POST" action="/request-quote" style="max-width:540px; margin:0 auto; text-align:left; background:#fff; border-radius:12px; box-shadow:0 2px 16px #0001; padding:32px 28px;">
+    <div style="margin-bottom:18px;">
+      <label for="qname" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Full Name *</label>
+      <input type="text" id="qname" name="qname" required style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qemail" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Email Address *</label>
+      <input type="email" id="qemail" name="qemail" required style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qphone" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Phone Number *</label>
+      <input type="tel" id="qphone" name="qphone" required style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+<div style="margin-bottom:18px;">
+      <label for="qvehicle" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Vehicle of Interest</label>
+<select id="qvehicle" name="qvehicle" style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; background:#fff;">
+        <option value="">Select a vehicle</option>
+        <option value="Wigo">Wigo</option>
+        <option value="Vios">Vios</option>
+        <option value="ATIV">ATIV</option>
+        <option value="Corolla Altis">Corolla Altis</option>
+        <option value="Camry">Camry</option>
+        <option value="Raize">Raize</option>
+        <option value="Veloz">Veloz</option>
+        <option value="Rush">Rush</option>
+        <option value="Corolla Cross">Corolla Cross</option>
+        <option value="Yaris Cross">Yaris Cross</option>
+        <option value="RAV4">RAV4</option>
+        <option value="Fortuner">Fortuner</option>
+        <option value="Land Cruiser Prado">Land Cruiser Prado</option>
+        <option value="bZ4X">bZ4X</option>
+        <option value="Avanza">Avanza</option>
+        <option value="Innova">Innova</option>
+        <option value="Zenix">Zenix</option>
+        <option value="Alphard">Alphard</option>
+        <option value="Hiace">Hiace</option>
+        <option value="Coaster">Coaster</option>
+        <option value="Hilux">Hilux</option>
+        <option value="Hilux Fleet">Hilux Fleet</option>
+        <option value="Tamaraw">Tamaraw</option>
+        <option value="Lite Ace">Lite Ace</option>
+      </select>
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qbirthdate" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Birthdate</label>
+      <input type="date" id="qbirthdate" name="qbirthdate" style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px;">
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qaddress" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Complete Address</label>
+      <textarea id="qaddress" name="qaddress" rows="2" placeholder="Enter your complete address..." style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; resize:vertical;"></textarea>
+    </div>
+    <div style="margin-bottom:18px;">
+      <label for="qincome" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Source of Income</label>
+      <select id="qincome" name="qincome" style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; background:#fff;">
+        <option value="">Select source of income</option>
+        <option value="Employed">Employed</option>
+        <option value="Self-Employed">Self-Employed</option>
+        <option value="Business Owner">Business Owner</option>
+        <option value="OFW">OFW (Overseas Filipino Worker)</option>
+        <option value="Pensioner">Pensioner</option>
+        <option value="Investor">Investor</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div style="margin-bottom:22px;">
+      <label for="qmessage" style="display:block; margin-bottom:7px; font-weight:600; color:#222;">Message</label>
+      <textarea id="qmessage" name="qmessage" rows="4" placeholder="Let us know your requirements..." style="width:100%; padding:13px; border:1px solid #ccc; border-radius:6px; font-size:15px; resize:vertical; min-height:80px;"></textarea>
+    </div>
+    <button type="submit" style="background:#d32f2f; color:#fff; padding:15px 44px; border:none; border-radius:6px; font-size:16px; font-weight:700; letter-spacing:1px; cursor:pointer; transition:background 0.3s; display:block; margin:0 auto;">REQUEST QUOTE</button>
+  </form>
+</section>
+
+<!-- LOCATION SECTION (moved below quote) -->
+<section class="location-section" style="background:#f7f7f7; padding:40px 0; text-align:center;">
+  <h2 style="font-size:2.5rem; color:#d32f2f; margin-bottom:10px;">Visit Us at Toyota Tacloban, Leyte</h2>
+  <p style="font-size:1.2rem; color:#333; margin-bottom:18px;">Barangay 71 Naganaga, 6500 Tacloban City &bull; <b>Open</b> - Closes 5pm<br>Marcel's number <a href="tel:0533252222">09661350439</a></p>
+  <div style="max-width:700px; margin:0 auto 24px;">
+    <iframe src="https://www.google.com/maps?q=Barangay+71+Naganaga+Tacloban+City&output=embed" width="100%" height="340" style="border:0; border-radius:12px; box-shadow:0 4px 24px #0002;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="custom-footer" style="width:100vw; min-height:220px; background:url('{{ url_for('static', filename='footer-background.webp') }}') center center/cover no-repeat; display:flex; align-items:center; justify-content:center; position:relative; margin-top:0; overflow:hidden; padding-bottom:20px;">
+<div class="footer-overlay" style="width:100vw; min-height:220px; background:rgba(0,0,0,0.1); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px 20px 40px 20px; position:relative; overflow:hidden;">
+    <img src="{{ url_for('static', filename='footer-logo.webp') }}" alt="Toyota Logo" class="footer-logo" style="width:90px; max-width:120px; max-height:90px; height:auto; margin-bottom:8px; filter:drop-shadow(0 2px 8px #2228); display:block; margin-left:auto; margin-right:auto; object-fit:contain;">
+<div class="footer-cursive" style="font-family:'Brush Script MT',cursive,sans-serif; font-size:2.1rem; color:#fff; text-shadow:0 2px 8px #2228; letter-spacing:2px; margin-top:0; margin-bottom:0; font-weight:400; text-align:center; width:100vw; display:block; z-index:2;">move your world</div>
+    <div style="color:#fff; font-size:12px; margin-top:15px; text-align:center; opacity:0.85;">©no copyright infringement intended.</div>
+  </div>
+</footer>
+
+<!-- FULL SPECS MODAL: COROLLA ALTIS 1.8 GR-S HEV CVT -->
+<div class="specs-modal-overlay" id="specsModalOverlayAltisGRSHEV" aria-hidden="true">
+  <div class="specs-modal" role="dialog" aria-modal="true" aria-labelledby="specsModalTitleAltisGRSHEV">
+    <div class="specs-modal-header">
+      <h2 id="specsModalTitleAltisGRSHEV">Full specs for Corolla Altis 1.8 GR-S HEV CVT</h2>
+      <button class="specs-close" id="closeSpecsTopAltisGRSHEV" aria-label="Close">×</button>
+    </div>
+
+    <div class="specs-modal-content">
+
+      <div class="specs-section">
+        <h3>Dimension and Weight</h3>
+        <ul class="specs-list">
+          <li><span>Overall Dimension (mm)</span><span>4635 x 1780 x 1455</span></li>
+          <li><span>Wheelbase (mm)</span><span>2700</span></li>
+          <li><span>Min. Ground Clearance</span><span>149</span></li>
+          <li><span>Seating Capacity</span><span>5</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Engine</h3>
+        <ul class="specs-list">
+          <li><span>Engine Type</span><span>2ZR-FXE: In-Line 4, 16-Valve DOHC, Chain Drive with Dual VVT-i, Hybrid</span></li>
+          <li><span>Engine Displacement (cc)</span><span>1798</span></li>
+          <li><span>Maximum Output (ps/rpm)</span><span>98 / 5,200</span></li>
+          <li><span>Total System Max Output</span><span>122</span></li>
+          <li><span>Maximum Torque (Nm/Rpm)</span><span>142 / 3,600</span></li>
+          <li><span>Fuel Type</span><span>Gasoline</span></li>
+          <li><span>Fuel Capacity (L)</span><span>43</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Transmission</h3>
+        <ul class="specs-list">
+          <li><span>Transmission</span><span>CVT</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Interior</h3>
+        <ul class="specs-list">
+          <li><span>Seat Material</span><span>Leather with Suede</span></li>
+          <li><span>Driver Seat Type & Adjustment</span><span>8-Way Power with Lumbar Support</span></li>
+          <li><span>Passenger Seat Type & Adjustment</span><span>4-Way</span></li>
+          <li><span>Multi-Information Display (MID)</span><span>12.3" Digital</span></li>
+          <li><span>Inside Rear View Mirror</span><span>Electrochromic Mirror</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Exterior</h3>
+        <ul class="specs-list">
+          <li><span>Headlamps</span><span>LED</span></li>
+          <li><span>Daytime Running Lights</span><span>LED</span></li>
+          <li><span>Front Fog Lamps</span><span>LED</span></li>
+          <li><span>Front Windshield Wiper</span><span>Rain-Sensing</span></li>
+          <li><span>Rear Combination Lamps</span><span>Smoked LED</span></li>
+          <li><span>Rear Spoiler</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Function</h3>
+        <ul class="specs-list">
+          <li><span>Power Window</span><span>All: Auto Up/Down with Jam-Protect</span></li>
+          <li><span>Power Door Lock</span><span>Speed Sensing</span></li>
+          <li><span>Keyless Entry</span><span>Smart</span></li>
+          <li><span>Ignition System</span><span>Push Start</span></li>
+          <li><span>Airconditioning System</span><span>Dual-Zone Climate Control</span></li>
+          <li><span>Wireless Charger</span><span>With</span></li>
+          <li><span>Data Communication Module</span><span>With</span></li>
+          <li><span>Drive Mode Select</span><span>Eco / Normal / Sport / EV</span></li>
+          <li><span>Audio System Type</span><span>9" Display Audio with Wireless Apple CarPlay & Android Auto</span></li>
+          <li><span>Audio System Speakers</span><span>6</span></li>
+          <li><span>Power Steering</span><span>Electronic Power Steering</span></li>
+          <li><span>12V Socket</span><span>With</span></li>
+          <li><span>Steering Switches</span><span>Display, Audio, Phone, Voice Command, Cruise Control, Lane Tracing Assist</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Chassis</h3>
+        <ul class="specs-list">
+          <li><span>Front/Rear Brake</span><span>Ventilated Discs / Solid Discs</span></li>
+          <li><span>Tires</span><span>225/45 R17</span></li>
+          <li><span>Wheels</span><span>R17 Alloy (GR-S)</span></li>
+          <li><span>Parking Brake</span><span>Electronic Parking Brake with Brake Hold</span></li>
+          <li><span>Drivetrain</span><span>Front Wheel Drive (FWD)</span></li>
+          <li><span>Spare Tire</span><span>Full Spare Tire</span></li>
+          <li><span>Brake Type</span><span>Fr: Ventilated Disc / Rr: Solid Discs</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Safety and Security</h3>
+        <ul class="specs-list">
+          <li><span>Blind Spot Monitor (BSM)</span><span>With</span></li>
+          <li><span>SRS Airbags</span><span>Driver, Driver Knee, Passenger, Side, Curtain Shield (7)</span></li>
+          <li><span>Anti-Lock Brake System (ABS)</span><span>With Electronic Brakeforce Distribution</span></li>
+          <li><span>Vehicle Stability Control (VSC)</span><span>With</span></li>
+          <li><span>Hill-Start Assist Control (HAC)</span><span>With</span></li>
+          <li><span>Front Seatbelts</span><span>3 pt. ELR with Pretensioner and Force Limiter</span></li>
+          <li><span>Rear Seatbelts</span><span>3 pt. ELR</span></li>
+          <li><span>Child Restraint System</span><span>ISOFIX & Tether Anchor</span></li>
+          <li><span>Camera</span><span>Back Camera: Panoramic View Monitor</span></li>
+          <li><span>Cruise Control</span><span>With Dynamic Radar Cruise Control</span></li>
+          <li><span>Pre-Collision System (PCS)</span><span>With</span></li>
+          <li><span>Automatic High Beam (AHB)</span><span>With</span></li>
+          <li><span>Lane Tracing Assist (LTA)</span><span>With</span></li>
+          <li><span>Lane Departure Alert (LDA)</span><span>With</span></li>
+          <li><span>Back Sonar</span><span>2</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-close-text" id="closeSpecsTextAltisGRSHEV">CLOSE</div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FULL SPECS MODAL: COROLLA ALTIS 1.8 G HEV CVT -->
+<div class="specs-modal-overlay" id="specsModalOverlayAltisGHEV" aria-hidden="true">
+  <div class="specs-modal" role="dialog" aria-modal="true" aria-labelledby="specsModalTitleAltisGHEV">
+    <div class="specs-modal-header">
+      <h2 id="specsModalTitleAltisGHEV">Full specs for Corolla Altis 1.8 G HEV CVT</h2>
+      <button class="specs-close" id="closeSpecsTopAltisGHEV" aria-label="Close">×</button>
+    </div>
+
+    <div class="specs-modal-content">
+
+      <div class="specs-section">
+        <h3>Dimension and Weight</h3>
+        <ul class="specs-list">
+          <li><span>Overall Dimension (mm)</span><span>4635 x 1780 x 1455</span></li>
+          <li><span>Wheelbase (mm)</span><span>2700</span></li>
+          <li><span>Seating Capacity</span><span>5</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Engine</h3>
+        <ul class="specs-list">
+          <li><span>Engine Type</span><span>2ZR-FXE: In-Line 4, 16-Valve DOHC, Chain Drive with Dual VVT-i, Hybrid</span></li>
+          <li><span>Engine Displacement (cc)</span><span>1798</span></li>
+          <li><span>Maximum Output (ps/rpm)</span><span>98 / 5,200</span></li>
+          <li><span>Total System Max Output</span><span>122</span></li>
+          <li><span>Maximum Torque (Nm/Rpm)</span><span>142 / 3,600</span></li>
+          <li><span>Fuel Type</span><span>Gasoline</span></li>
+          <li><span>Fuel Capacity (L)</span><span>43</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Transmission</h3>
+        <ul class="specs-list">
+          <li><span>Transmission</span><span>CVT</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Interior</h3>
+        <ul class="specs-list">
+          <li><span>Seat Material</span><span>Leather</span></li>
+          <li><span>Front Seat Type & Adjustment</span><span>D: 8-Way Power with Lumbar Support; P: 4-Way Manual</span></li>
+          <li><span>Rear #1 Passenger Seat Type & Adjustment</span><span>60:40 Split</span></li>
+          <li><span>Inside Rear View Mirror</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Exterior</h3>
+        <ul class="specs-list">
+          <li><span>Headlamps</span><span>LED</span></li>
+          <li><span>Daytime Running Lights</span><span>LED</span></li>
+          <li><span>Front Fog Lamps</span><span>LED</span></li>
+          <li><span>Front Windshield Wiper</span><span>Intermittent, Time Adjust</span></li>
+          <li><span>Rear Combination Lamps</span><span>Smoked LED</span></li>
+          <li><span>High Mount Stop Lamp</span><span>With</span></li>
+          <li><span>Side Turn Signal Lamp</span><span>With</span></li>
+          <li><span>Rear Spoiler</span><span>With</span></li>
+          <li><span>Door Outside Handle</span><span>With</span></li>
+          <li><span>Antenna</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Function</h3>
+        <ul class="specs-list">
+          <li><span>Power Window</span><span>All: Auto Up/Down with Jam-Protect</span></li>
+          <li><span>Power Door Lock</span><span>Speed Sensing</span></li>
+          <li><span>Keyless Entry</span><span>Smart</span></li>
+          <li><span>Ignition System</span><span>Push Start</span></li>
+          <li><span>Airconditioning System</span><span>Single-Zone Climate Control</span></li>
+          <li><span>Data Communication Module</span><span>With</span></li>
+          <li><span>Drive Mode Select</span><span>Eco / Normal / Power / EV</span></li>
+          <li><span>Audio System Type</span><span>9" Display Audio with Wireless Apple CarPlay & Android Auto</span></li>
+          <li><span>Audio System Speakers</span><span>6</span></li>
+          <li><span>Multi-Information Display (MID)</span><span>7" Digital</span></li>
+          <li><span>Power Steering</span><span>Electronic Power Steering</span></li>
+          <li><span>12V Socket</span><span>With</span></li>
+          <li><span>Steering Switches</span><span>Display, Audio, Phone, Voice Command, Cruise Control, Lane Tracing Assist</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Chassis</h3>
+        <ul class="specs-list">
+          <li><span>Front/Rear Brake</span><span>Ventilated Discs / Solid Discs</span></li>
+          <li><span>Tires</span><span>225/45 R17</span></li>
+          <li><span>Wheels</span><span>R17 Alloy</span></li>
+          <li><span>Parking Brake</span><span>Electronic Parking Brake with Brake Hold</span></li>
+          <li><span>Drivetrain</span><span>Front Wheel Drive (FWD)</span></li>
+          <li><span>Spare Tire</span><span>Temporary Tire</span></li>
+          <li><span>Brake Type</span><span>F: Ventilated Discs / R: Solid Discs</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Safety and Security</h3>
+        <ul class="specs-list">
+          <li><span>Blind Spot Monitor (BSM)</span><span>With</span></li>
+          <li><span>SRS Airbags</span><span>Driver, Driver Knee, Passenger, Side Curtain Shield (7)</span></li>
+          <li><span>Anti-Lock Brake System (ABS)</span><span>With Electronic Brakeforce Distribution</span></li>
+          <li><span>Vehicle Stability Control (VSC)</span><span>With</span></li>
+          <li><span>Hill-Start Assist Control (HAC)</span><span>With</span></li>
+          <li><span>Front Seatbelts</span><span>3 pt. ELR with Pretensioner and Force Limiter</span></li>
+          <li><span>Rear Seatbelts</span><span>3 pt. ELR</span></li>
+          <li><span>Child Restraint System</span><span>ISOFIX & Tether Anchor: 2</span></li>
+          <li><span>Camera</span><span>With</span></li>
+          <li><span>Pre-Collision System (PCS)</span><span>With</span></li>
+          <li><span>Automatic High Beam (AHB)</span><span>With</span></li>
+          <li><span>Lane Tracing Assist (LTA)</span><span>With</span></li>
+          <li><span>Lane Departure Alert (LDA)</span><span>With</span></li>
+          <li><span>Back Sonar</span><span>2</span></li>
+          <li><span>Dynamic Radar Cruise Control (DRCC)</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-close-text" id="closeSpecsTextAltisGHEV">CLOSE</div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FULL SPECS MODAL: COROLLA ALTIS 1.8 E HEV CVT -->
+<div class="specs-modal-overlay" id="specsModalOverlayAltisEHEV" aria-hidden="true">
+  <div class="specs-modal" role="dialog" aria-modal="true" aria-labelledby="specsModalTitleAltisEHEV">
+    <div class="specs-modal-header">
+      <h2 id="specsModalTitleAltisEHEV">Full specs for Corolla Altis 1.8 E HEV CVT</h2>
+      <button class="specs-close" id="closeSpecsTopAltisEHEV" aria-label="Close">×</button>
+    </div>
+
+    <div class="specs-modal-content">
+
+      <div class="specs-section">
+        <h3>Dimension and Weight</h3>
+        <ul class="specs-list">
+          <li><span>Overall Dimension (mm)</span><span>4635 x 1780 x 1455</span></li>
+          <li><span>Wheelbase (mm)</span><span>2700</span></li>
+          <li><span>Seating Capacity</span><span>5</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Engine</h3>
+        <ul class="specs-list">
+          <li><span>Engine Type</span><span>2ZR-FXE: In-Line 4, 16-Valve DOHC, Chain Drive with Dual VVT-i, Hybrid</span></li>
+          <li><span>Engine Displacement (cc)</span><span>1798</span></li>
+          <li><span>Maximum Output (ps/rpm)</span><span>98 / 5,200</span></li>
+          <li><span>Total System Max Output</span><span>122</span></li>
+          <li><span>Maximum Torque (Nm/Rpm)</span><span>142 / 3,600</span></li>
+          <li><span>Fuel Type</span><span>Gasoline</span></li>
+          <li><span>Fuel Capacity (L)</span><span>43</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Transmission</h3>
+        <ul class="specs-list">
+          <li><span>Transmission</span><span>CVT</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Interior</h3>
+        <ul class="specs-list">
+          <li><span>Seat Material</span><span>Leather</span></li>
+          <li><span>Front Seat Type & Adjustment</span><span>D: 6-Way Manual, P: 4-Way Manual</span></li>
+          <li><span>Rear #1 Passenger Seat Type & Adjustment</span><span>60:40 Split</span></li>
+          <li><span>Inside Rear View Mirror</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Exterior</h3>
+        <ul class="specs-list">
+          <li><span>Headlamps</span><span>With</span></li>
+          <li><span>Daytime Running Lights</span><span>LED</span></li>
+          <li><span>Front Fog Lamps</span><span>Without</span></li>
+          <li><span>Front Windshield Wiper</span><span>Intermittent, Time Adjust</span></li>
+          <li><span>Rear Combination Lamps</span><span>Smoked LED</span></li>
+          <li><span>High Mount Stop Lamp</span><span>With</span></li>
+          <li><span>Side Turn Signal Lamp</span><span>With</span></li>
+          <li><span>Rear Spoiler</span><span>With</span></li>
+          <li><span>Door Outside Handle</span><span>With</span></li>
+          <li><span>Antenna</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Function</h3>
+        <ul class="specs-list">
+          <li><span>Power Window</span><span>All: Auto Up/Down with Jam-Protect</span></li>
+          <li><span>Power Door Lock</span><span>Speed Sensing</span></li>
+          <li><span>Keyless Entry</span><span>Smart</span></li>
+          <li><span>Ignition System</span><span>Push Start</span></li>
+          <li><span>Airconditioning System</span><span>Single-Zone Climate Control</span></li>
+          <li><span>Data Communication Module</span><span>With</span></li>
+          <li><span>Drive Mode Select</span><span>Eco / Normal / Power / EV</span></li>
+          <li><span>Audio System Type</span><span>9" Display Audio with Wireless Apple CarPlay & Android Auto</span></li>
+          <li><span>Audio System Speakers</span><span>4</span></li>
+          <li><span>Multi-Information Display (MID)</span><span>7" Digital</span></li>
+          <li><span>Power Steering</span><span>Electronic Power Steering</span></li>
+          <li><span>12V Socket</span><span>With</span></li>
+          <li><span>Steering Switches</span><span>Display, Audio, Phone, Voice Command, Cruise Control, Lane Tracing Assist</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Chassis</h3>
+        <ul class="specs-list">
+          <li><span>Front/Rear Brake</span><span>Ventilated Discs / Solid Discs</span></li>
+          <li><span>Tires</span><span>205/55 R16</span></li>
+          <li><span>Wheels</span><span>R16 Alloy</span></li>
+          <li><span>Parking Brake</span><span>Electronic Parking Brake with Brake Hold</span></li>
+          <li><span>Drivetrain</span><span>Front Wheel Drive (FWD)</span></li>
+          <li><span>Spare Tire</span><span>Temporary Tire</span></li>
+          <li><span>Brake Type</span><span>F: Ventilated Discs / R: Solid Discs</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Safety and Security</h3>
+        <ul class="specs-list">
+          <li><span>SRS Airbags</span><span>Driver, Driver Knee, Passenger, Side Curtain Shield (7)</span></li>
+          <li><span>Anti-Lock Brake System (ABS)</span><span>With Electronic Brakeforce Distribution</span></li>
+          <li><span>Vehicle Stability Control (VSC)</span><span>With</span></li>
+          <li><span>Hill-Start Assist Control (HAC)</span><span>With</span></li>
+          <li><span>Front Seatbelts</span><span>3 pt. ELR with Pretensioner and Force Limiter</span></li>
+          <li><span>Rear Seatbelts</span><span>3 pt. ELR</span></li>
+          <li><span>Child Lock Protection</span><span>ISOFIX & Tether Anchor: 2</span></li>
+          <li><span>Camera</span><span>With</span></li>
+          <li><span>Pre-Collision System (PCS)</span><span>With</span></li>
+          <li><span>Automatic High Beam (AHB)</span><span>With</span></li>
+          <li><span>Lane Tracing Assist (LTA)</span><span>With</span></li>
+          <li><span>Lane Departure Alert (LDA)</span><span>With</span></li>
+          <li><span>Back Sonar</span><span>2</span></li>
+          <li><span>Dynamic Radar Cruise Control (DRCC)</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-close-text" id="closeSpecsTextAltisEHEV">CLOSE</div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FULL SPECS MODAL: COROLLA ALTIS 1.8 E CVT -->
+<div class="specs-modal-overlay" id="specsModalOverlayAltisECVT" aria-hidden="true">
+  <div class="specs-modal" role="dialog" aria-modal="true" aria-labelledby="specsModalTitleAltisECVT">
+    <div class="specs-modal-header">
+      <h2 id="specsModalTitleAltisECVT">Full specs for Corolla Altis 1.8 E CVT</h2>
+      <button class="specs-close" id="closeSpecsTopAltisECVT" aria-label="Close">×</button>
+    </div>
+
+    <div class="specs-modal-content">
+
+      <div class="specs-section">
+        <h3>Dimension and Weight</h3>
+        <ul class="specs-list">
+          <li><span>Overall Dimension (mm)</span><span>4630 x 1780 x 1435</span></li>
+          <li><span>Wheelbase (mm)</span><span>2700</span></li>
+          <li><span>Min. Ground Clearance</span><span>128</span></li>
+          <li><span>Seating Capacity</span><span>5</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Engine</h3>
+        <ul class="specs-list">
+          <li><span>Engine Type</span><span>2ZR-FE: In-Line 4, 16 Valve DOHC, Chain Drive with Dual VVT-i</span></li>
+          <li><span>Engine Displacement (cc)</span><span>1798</span></li>
+          <li><span>Maximum Output (ps/rpm)</span><span>140 / 6,400</span></li>
+          <li><span>Maximum Torque (Nm/Rpm)</span><span>172 / 4,000</span></li>
+          <li><span>Fuel Type</span><span>Gasoline</span></li>
+          <li><span>Fuel Capacity (L)</span><span>50</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Transmission</h3>
+        <ul class="specs-list">
+          <li><span>Transmission</span><span>CVT</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Interior</h3>
+        <ul class="specs-list">
+          <li><span>Seat Material</span><span>Fabric</span></li>
+          <li><span>Driver Seat Type & Adjustment</span><span>6-Way</span></li>
+          <li><span>Passenger Seat Type & Adjustment</span><span>4-Way</span></li>
+          <li><span>Multi-Information Display (MID)</span><span>7" Digital</span></li>
+          <li><span>Inside Rear View Mirror</span><span>With</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Exterior</h3>
+        <ul class="specs-list">
+          <li><span>Headlamps</span><span>With</span></li>
+          <li><span>Daytime Running Lights</span><span>LED</span></li>
+          <li><span>Front Fog Lamps</span><span>Without</span></li>
+          <li><span>Front Windshield Wiper</span><span>Intermittent</span></li>
+          <li><span>Rear Combination Lamps</span><span>LED</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Function</h3>
+        <ul class="specs-list">
+          <li><span>Power Window</span><span>All: Auto Up/Down with Jam-Protect</span></li>
+          <li><span>Power Door Lock</span><span>Speed Sensing</span></li>
+          <li><span>Keyless Entry</span><span>Smart</span></li>
+          <li><span>Ignition System</span><span>Rotary</span></li>
+          <li><span>Airconditioning System</span><span>Automatic Climate Control</span></li>
+          <li><span>Data Communication Module</span><span>With</span></li>
+          <li><span>Drive Mode Select</span><span>With</span></li>
+          <li><span>Audio System Type</span><span>8" Display Audio with Apple CarPlay & Android Auto</span></li>
+          <li><span>Audio System Speakers</span><span>6</span></li>
+          <li><span>Power Steering</span><span>Electronic Power Steering</span></li>
+          <li><span>12V Socket</span><span>With</span></li>
+          <li><span>Steering Switches</span><span>Display, Audio, Phone, Voice Command</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Chassis</h3>
+        <ul class="specs-list">
+          <li><span>Front/Rear Brake</span><span>Ventilated Discs / Solid Discs</span></li>
+          <li><span>Tires</span><span>205/55 R16</span></li>
+          <li><span>Wheels</span><span>R16 Alloy</span></li>
+          <li><span>Parking Brake</span><span>Lever</span></li>
+          <li><span>Drivetrain</span><span>Front Wheel Drive (FWD)</span></li>
+          <li><span>Spare Tire</span><span>Full Spare Tire</span></li>
+          <li><span>Brake Type</span><span>Fr: Ventilated Disc / Rr: Solid Discs</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-section">
+        <h3>Safety and Security</h3>
+        <ul class="specs-list">
+          <li><span>SRS Airbags</span><span>Driver, Driver Knee, Passenger, Side, Curtain Shield (7)</span></li>
+          <li><span>Anti-Lock Brake System (ABS)</span><span>With Electronic Brakeforce Distribution</span></li>
+          <li><span>Vehicle Stability Control (VSC)</span><span>With</span></li>
+          <li><span>Hill-Start Assist Control (HAC)</span><span>With</span></li>
+          <li><span>Front Seatbelts</span><span>3 pt. ELR with Pretensioner and Force Limiter</span></li>
+          <li><span>Rear Seatbelts</span><span>3 pt. ELR</span></li>
+          <li><span>Child Restraint System</span><span>ISOFIX & Tether Anchor</span></li>
+          <li><span>Camera</span><span>With Back Camera</span></li>
+          <li><span>Back Sonar</span><span>2</span></li>
+        </ul>
+      </div>
+
+      <div class="specs-close-text" id="closeSpecsTextAltisECVT">CLOSE</div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+// Feature scroll animation
+document.addEventListener('DOMContentLoaded', function() {
+  const features = document.querySelectorAll('.feature');
+  function animateFeatures() {
+    features.forEach((feature, i) => {
+      const rect = feature.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        if (i % 2 === 0) {
+          feature.classList.add('slide-in-left');
+        } else {
+          feature.classList.add('slide-in-right');
+        }
+      }
+    });
+  }
+  window.addEventListener('scroll', animateFeatures);
+  animateFeatures();
+});
+
+// Inside image reveal on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const insideImage = document.getElementById('insideImage');
+  if (!insideImage) return;
+
+  function revealInsideImage() {
+    const rect = insideImage.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      insideImage.classList.add('show');
+    }
+  }
+
+  window.addEventListener('scroll', revealInsideImage);
+  revealInsideImage();
+});
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function changeColor(color) {
+  const img = document.getElementById("carImage");
+  const label = document.getElementById("colorLabel");
+
+  const images = {
+    black: "{{ url_for('static', filename='corollaab.webp') }}",
+    white: "{{ url_for('static', filename='corollaaw.webp') }}",
+  };
+
+  const labels = {
+    black: 'Black Metallic',
+    white: 'White Pearl'
+  };
+
+  const fitByColor = {
+    black: 'contain',
+    white: 'contain',
+  
+  };
+
+  if (images[color]) {
+    img.style.objectFit = fitByColor[color] || 'contain';
+    img.src = images[color];
+    label.textContent = labels[color] || 'Wigo';
+  }
+}
+
+// Gallery infinite carousel
+document.addEventListener('DOMContentLoaded', function(){
+  const track = document.getElementById('gallery-track');
+  const leftBtn = document.getElementById('gallery-left');
+  const rightBtn = document.getElementById('gallery-right');
+
+  let slides = track.querySelectorAll('.gallery-slide');
+  let index = 1; // start at first real slide
+  let slideWidth = slides[0].getBoundingClientRect().width;
+  let isAnimating = false;
+
+  function setPosition(animate = true) {
+    track.style.transition = animate ? 'transform 300ms ease' : 'none';
+    track.style.transform = `translateX(${-index * slideWidth}px)`;
+  }
+
+  function refresh() {
+    slides = track.querySelectorAll('.gallery-slide');
+    slideWidth = slides[0].getBoundingClientRect().width;
+    setPosition(false);
+    // re-enable transition next frame
+    requestAnimationFrame(()=> track.style.transition = 'transform 300ms ease');
+  }
+
+  window.addEventListener('resize', refresh);
+  window.addEventListener('load', refresh);
+
+  // initial position after DOM ready
+  if (document.readyState === 'complete') {
+    refresh();
+  } else {
+    requestAnimationFrame(refresh);
+  }
+
+  rightBtn.addEventListener('click', function(){
+    if (isAnimating) return;
+    isAnimating = true;
+    index++;
+    setPosition(true);
+  });
+
+  leftBtn.addEventListener('click', function(){
+    if (isAnimating) return;
+
+    // If on first real slide, jump to last real slide first (without animation),
+    // then move one step left with animation to keep infinite loop smooth.
+    if (index <= 1) {
+      index = slides.length - 2;
+      setPosition(false);
+      // force reflow so next transform animates
+      track.offsetHeight;
+    }
+
+    isAnimating = true;
+    index--;
+    setPosition(true);
+  });
+
+  track.addEventListener('transitionend', function(){
+    const current = slides[index];
+
+    // Safety guard for out-of-range indexes
+    if (!current) {
+      if (index <= 0) index = slides.length - 2;
+      if (index >= slides.length - 1) index = 1;
+      setPosition(false);
+      isAnimating = false;
+      return;
+    }
+
+    const cloneType = current.dataset.clone;
+    if (cloneType === 'first') {
+      // jumped to cloned first — go to real first
+      index = 1;
+      setPosition(false);
+    } else if (cloneType === 'last') {
+      // jumped to cloned last — go to real last
+      index = slides.length - 2;
+      setPosition(false);
+    }
+
+    isAnimating = false;
+  });
+
+});
+
+// Full specs modal behavior (G CVT + E CVT)
+document.addEventListener('DOMContentLoaded', function(){
+  function setupModal(openId, overlayId, closeTopId, closeTextId) {
+    const openBtn = document.getElementById(openId);
+    const overlay = document.getElementById(overlayId);
+    const closeTop = document.getElementById(closeTopId);
+    const closeText = document.getElementById(closeTextId);
+
+    if (!openBtn || !overlay) return null;
+
+    function openModal() {
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden', 'true');
+      const anyOpen = document.querySelector('.specs-modal-overlay.show');
+      if (!anyOpen) document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    if (closeTop) closeTop.addEventListener('click', closeModal);
+    if (closeText) closeText.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function(e){
+      if (e.target === overlay) closeModal();
+    });
+
+    return { overlay, closeModal };
+  }
+
+// Setup modals with correct IDs for Corolla Altis variants
+  const gModal = setupModal('openSpecsGCVT', 'specsModalOverlayAltisGRSHEV', 'closeSpecsTopAltisGRSHEV', 'closeSpecsTextAltisGRSHEV')
+  const eModal = setupModal('openSpecsECVT', 'specsModalOverlayAltisGHEV', 'closeSpecsTopAltisGHEV', 'closeSpecsTextAltisGHEV')
+  const jModal = setupModal('openSpecsJMT', 'specsModalOverlayAltisEHEV', 'closeSpecsTopAltisEHEV', 'closeSpecsTextAltisEHEV')
+  const jmt2Modal = setupModal('openSpecsJMT2', 'specsModalOverlayAltisECVT', 'closeSpecsTopAltisECVT', 'closeSpecsTextAltisECVT')
+
+// Also open modal when variant image is clicked
+  const gImageTrigger = document.getElementById('openSpecsGCVTImage');
+  const eImageTrigger = document.getElementById('openSpecsECVTImage');
+  const jImageTrigger = document.getElementById('openSpecsJMTImage');
+  const jmt2ImageTrigger = document.getElementById('openSpecsJMTImage2');
+
+  if (gImageTrigger && gModal) gImageTrigger.addEventListener('click', () => gModal.overlay.classList.add('show') || gModal.overlay.setAttribute('aria-hidden', 'false') || (document.body.style.overflow = 'hidden'));
+  if (eImageTrigger && eModal) eImageTrigger.addEventListener('click', () => eModal.overlay.classList.add('show') || eModal.overlay.setAttribute('aria-hidden', 'false') || (document.body.style.overflow = 'hidden'));
+  if (jImageTrigger && jModal) jImageTrigger.addEventListener('click', () => jModal.overlay.classList.add('show') || jModal.overlay.setAttribute('aria-hidden', 'false') || (document.body.style.overflow = 'hidden'));
+  if (jmt2ImageTrigger && jmt2Modal) jmt2ImageTrigger.addEventListener('click', () => jmt2Modal.overlay.classList.add('show') || jmt2Modal.overlay.setAttribute('aria-hidden', 'false') || (document.body.style.overflow = 'hidden'));
+
+document.addEventListener('keydown', function(e){
+    if (e.key !== 'Escape') return;
+    if (gModal && gModal.overlay.classList.contains('show')) gModal.closeModal();
+    if (eModal && eModal.overlay.classList.contains('show')) eModal.closeModal();
+    if (jModal && jModal.overlay.classList.contains('show')) jModal.closeModal();
+    if (jmt2Modal && jmt2Modal.overlay.classList.contains('show')) jmt2Modal.closeModal();
+  });
+});
+</script>
+
+</body>
+</html>

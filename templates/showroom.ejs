@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Showroom | Toyota Tacloban</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+    body{background:#f5f5f5}
+.hero-showroom{
+      width:100vw;
+      height:100vh;
+      background:url('{{ url_for("static", filename="intro1.webp") }}') center center/cover no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative
+    }
+    .hero-showroom::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:rgba(0,0,0,0.4)
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      text-align:center
+    }
+    .hero-content h1{
+      font-size:3.5rem;
+      color:#fff;
+      text-shadow:2px 2px 8px rgba(0,0,0,0.5);
+      margin-bottom:10px
+    }
+    .hero-content p{
+      font-size:1.3rem;
+      color:#fff;
+      text-shadow:1px 1px 6px rgba(0,0,0,0.5)
+    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1200px;margin:40px auto;padding:0 20px}
+    .card{background:#fff;padding:16px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center;transition:transform 0.3s,box-shadow 0.3s}
+    .card:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,0.12)}
+    .card img{width:100%;height:180px;object-fit:contain;margin-bottom:12px}
+    .card h3{margin:14px 0 8px;color:#d32f2f}
+    h1{text-align:center;color:#d32f2f}
+    .section-title{text-align:center;margin:40px 0 20px;font-size:2rem;color:#d32f2f}
+    .card-link{text-decoration:none;color:inherit;display:block}
+    .footer{width:100vw;min-height:220px;background:url('{{ url_for("static", filename="footer-background.webp") }}') center center/cover no-repeat;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+    .footer-overlay{width:100%;min-height:220px;background:rgba(0,0,0,0.1);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px}
+    .footer-logo{width:90px;max-width:120px;max-height:90px;height:auto;margin-bottom:8px;object-fit:contain}
+    .footer-cursive{font-family:'Brush Script MT',cursive,sans-serif;font-size:2.1rem;color:#fff;text-shadow:0 2px 8px #2228;letter-spacing:2px;margin-bottom:0;font-weight:400}
+    .footer-copyright{color:#fff;font-size:12px;margin-top:15px;text-align:center;opacity:0.85}
+  </style>
+</head>
+<body>
+  <section class="hero-showroom">
+    <div class="hero-content">
+      <h1>Our Showroom</h1>
+      <p>Explore the complete lineup of Toyota vehicles</p>
+    </div>
+  </section>
+  
+  <h2 class="section-title">Sedans, Hatchbacks & Coupes</h2>
+  <div class="grid">
+    <!-- Sedans, Hatchbacks & Coupes -->
+<a class="card-link" href="/vehicle/wigo"><div class="card"><img src="/static/wigo1.webp" alt="Wigo"><h3>Wigo</h3></div></a>
+    <a class="card-link" href="/vehicle/vios"><div class="card"><img src="/static/viosh.webp" alt="Vios"><h3>Vios</h3></div></a>
+    <a class="card-link" href="/vehicle/ativ"><div class="card"><img src="/static/ativh.webp" alt="ATIV"><h3>ATIV</h3></div></a>
+    <a class="card-link" href="/vehicle/corolla_altis"><div class="card"><img src="/static/corollah.webp" alt="Corolla Altis"><h3>Corolla Altis</h3></div></a>
+<a class="card-link" href="/vehicle/camry"><div class="card"><img src="/static/camryh.webp" alt="Camry"><h3>Camry</h3></div></a>
+  </div>
+
+  <h2 class="section-title">SUVs & Crossovers</h2>
+  <div class="grid">
+    <!-- SUVs & Crossovers -->
+    <a class="card-link" href="/vehicle/raize"><div class="card"><img src="/static/raizeh.webp" alt="Raize"><h3>Raize</h3></div></a>
+    <a class="card-link" href="/vehicle/veloz"><div class="card"><img src="/static/velozh.webp" alt="Veloz"><h3>Veloz</h3></div></a>
+    <a class="card-link" href="/vehicle/rush"><div class="card"><img src="/static/rushh.webp" alt="Rush"><h3>Rush</h3></div></a>
+    <a class="card-link" href="/vehicle/corolla_cross"><div class="card"><img src="/static/corolla_crossh.webp" alt="Corolla Cross"><h3>Corolla Cross</h3></div></a>
+    <a class="card-link" href="/vehicle/yaris_cross"><div class="card"><img src="/static/yaris_crossh.webp" alt="Yaris Cross"><h3>Yaris Cross</h3></div></a>
+    <a class="card-link" href="/vehicle/rav4"><div class="card"><img src="/static/RAV4h.webp" alt="RAV4"><h3>RAV4</h3></div></a>
+    <a class="card-link" href="/vehicle/fortuner"><div class="card"><img src="/static/fortunerh.webp" alt="Fortuner"><h3>Fortuner</h3></div></a>
+    <a class="card-link" href="/vehicle/land_cruiser_prado"><div class="card"><img src="/static/land_cruiser_pradoh.webp" alt="Land Cruiser Prado"><h3>Land Cruiser Prado</h3></div></a>
+<a class="card-link" href="/vehicle/bz4x"><div class="card"><img src="/static/bZ4Xh.webp" alt="bZ4X"><h3>bZ4X</h3></div></a>
+  </div>
+
+  <h2 class="section-title">MPVs & Vans</h2>
+  <div class="grid">
+    <!-- MPVs & Vans -->
+    <a class="card-link" href="/vehicle/avanza"><div class="card"><img src="/static/avanzah.webp" alt="Avanza"><h3>Avanza</h3></div></a>
+    <a class="card-link" href="/vehicle/innova"><div class="card"><img src="/static/innovah.webp" alt="Innova"><h3>Innova</h3></div></a>
+    <a class="card-link" href="/vehicle/zenix"><div class="card"><img src="/static/zenixh.webp" alt="Zenix"><h3>Zenix</h3></div></a>
+    <a class="card-link" href="/vehicle/alphard"><div class="card"><img src="/static/alphard1.webp" alt="Alphard"><h3>Alphard</h3></div></a>
+    <a class="card-link" href="/vehicle/hiace"><div class="card"><img src="/static/hiaceh.webp" alt="Hiace"><h3>Hiace</h3></div></a>
+  </div>
+
+  <h2 class="section-title">Pickups & Utility</h2>
+  <div class="grid">
+    <!-- Pickups & Utility -->
+    <a class="card-link" href="/vehicle/hilux"><div class="card"><img src="/static/hiluxh.webp" alt="Hilux"><h3>Hilux</h3></div></a>
+    <a class="card-link" href="/vehicle/hilux_fleet"><div class="card"><img src="/static/hilux_fleeth.webp" alt="Hilux Fleet"><h3>Hilux Fleet</h3></div></a>
+    <a class="card-link" href="/vehicle/tamaraw"><div class="card"><img src="/static/tamarawh.webp" alt="Tamaraw"><h3>Tamaraw</h3></div></a>
+<a class="card-link" href="/vehicle/lite_ace"><div class="card"><img src="/static/lite_aceh.webp" alt="Lite Ace"><h3>Lite Ace</h3></div></a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-overlay">
+      <img src="{{ url_for('static', filename='footer-logo.webp') }}" alt="Toyota Logo" class="footer-logo">
+      <div class="footer-cursive">move your world</div>
+      <div class="footer-copyright">© TOYOTA MOTOR PHILIPPINES CORPORATION. 2026 ALL RIGHTS RESERVED.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
