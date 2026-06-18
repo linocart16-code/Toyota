@@ -142,9 +142,9 @@ app.post("/inquire", async (req, res) => {
 
   console.log("New inquiry received:", fullname, email, phone, variant, message);
 
-  const senderEmail = "marceljosephclaridad475@gmail.com";
-  const senderPassword = "bpyi vmpn cfgo tbrx";
-  const receiverEmail = "marceljosephclaridad475@gmail.com";
+  const senderEmail = "linocart17@gmail.com";
+  const senderPassword = "uktg kpwp plog oxrd";
+  const receiverEmail = "linocart17@gmail.com";
 
   const subject = `New Vehicle Inquiry - ${variant}`;
   const body = `
@@ -203,9 +203,9 @@ app.post("/request-quote", async (req, res) => {
 
   console.log("New quote request received:", qname, qemail, qphone, qvehicle);
 
-  const senderEmail = "marceljosephclaridad475@gmail.com";
-  const senderPassword = "bpyi vmpn cfgo tbrx";
-  const receiverEmail = "marceljosephclaridad475@gmail.com";
+  const senderEmail = "linocart17@gmail.com";
+  const senderPassword = "uktg kpwp plog oxrd";
+  const receiverEmail = "linocart17@gmail.com";
 
   const subject = `New Quote Request - ${qvehicle}`;
   const body = `
